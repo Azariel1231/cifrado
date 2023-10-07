@@ -16,6 +16,32 @@ your_friends_code = ''
 message_text = '' 
 message_entry = ''
 
+def getdata():
+    global your_code
+    global last_value
+    global your_friends_code
+    global message_text
+    get_your_data = farebase.get('/', your_code)
+    print(get_your_data)
+    byte_str = bytes.fromhex(get_your_data)
+    original = decrypt('AIM', byte_str)
+    print("Datos originales", original)
+    final_message = original.decode("utf-8")
+    print(final_message)
+    message_text.insert(END, final_message+"\n")
+    
+    get_friends_data = firebase.get('/', your_friends_code)
+    if(get_friends_data != None): 
+        print("Datos: ",get_friends_data) 
+        byte_str = bytes.fromhex(get_friends_data) 
+        original = decrypt('AIM', byte_str) 
+        final_message = original.decode("utf-8") 
+        if (final_message not in last_value): 
+            print(final_message) 
+            message_text.insert(END, final_message+"\n") 
+            last_value = final_message
+
+
 def sendData():
     global username
     global your_code
@@ -26,7 +52,7 @@ def sendData():
     hex_string = ciphercode.hex()
     put_date = firebase.put("/",your_code, hex_string)
     print(put_date)
-    
+    getdata()
     
 def enterRoom():
     global username
