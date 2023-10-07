@@ -22,7 +22,7 @@ def getData():
     global last_value
     global your_friends_code
     global message_text
-    get_your_data = farebase.get('/', your_code)
+    get_your_data = firebase.get('/', your_code)
     print(get_your_data)
     byte_str = bytes.fromhex(get_your_data)
     original = decrypt('AIM', byte_str)
