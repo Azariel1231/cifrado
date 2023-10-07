@@ -70,7 +70,7 @@ def enterRoom():
     
     message_root=Tk()
     message_root.title("Sifrado")
-    message_root.geometry("400x400")
+    message_root.geometry("800x600")
     message_root.configure(background= "black")
     
     message_text = Text(message_root, height=20, width=72) 
