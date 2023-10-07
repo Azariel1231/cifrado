@@ -15,8 +15,9 @@ your_code = ''
 your_friends_code = '' 
 message_text = '' 
 message_entry = ''
+last_value = ''
 
-def getdata():
+def getData():
     global your_code
     global last_value
     global your_friends_code
@@ -52,7 +53,7 @@ def sendData():
     hex_string = ciphercode.hex()
     put_date = firebase.put("/",your_code, hex_string)
     print(put_date)
-    getdata()
+    getData()
     
 def enterRoom():
     global username
